@@ -14,6 +14,7 @@ This is our first run of the program and always appreciate feedback. This first 
 # The program
 # About the lessons
 This code repository is split into code for each individual sensor and also a variety of differing combinations of these sensors to develop sense and response displays. We've gone to the effort to compile the required code to run these sensors and provide suitable output.
+
 The key principle of this program is to appreciate that a satellite requires many systems to function but must also achieve a purpose. So we have sensors which will tell us about the environment but have electronics which can provide us with feedback of the state of the system.
 
 # Board
@@ -21,17 +22,26 @@ Seeeduino Lotus v1.1 or greater - This is a great platform to reduce the amount 
 
 # Sensors
 Temperature & Humidity Sensor - Measure the temperature and moisture levels in the environment.
+
 Air Quality Sensor - Measure the CO2 in an environment.
+
 6-Axis Accelerometer and Gyroscope - Measure the state of the satellite 
+
 3-Axis Digital Compass - Measure orientation
+
 Loudness Sensor - Detection of audio
+
 Sunlight Sensor - Direction of the sun or strength of the UV light
+
 Speaker - Outputs audio
+
 Buzzer - Outputs a buzzing sound
+
 RGB LED Stick - Outputs a rainbow of colours with 10 RGB SMD lights.
 
 # Accessories
 10 x 5cm jumper cables - Help connect the sensors
+
 1 x Micro-USB cable - Connects the Arduino to your computer.
 
 # Contact
