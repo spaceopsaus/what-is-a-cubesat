@@ -1,6 +1,7 @@
 /*
-    This is a demo to test Grove - Sunlight Sensor library
-
+  This is a demo to test Grove - Sunlight Sensor library
+  To interface with this sensor, it uses I2C.
+  More info from Seeedstudio Wiki http://wiki.seeedstudio.com/Grove-Sunlight_Sensor/
 */
 
 #include <Wire.h>
@@ -26,7 +27,8 @@ void loop() {
   Serial.print("//--------------------------------------//\r\n");
   Serial.print("Vis: "); Serial.println(SI1145.ReadVisible());
   Serial.print("IR: "); Serial.println(SI1145.ReadIR());
-  //the real UV value must be div 100 from the reg value , datasheet for more information.
+  
+  //the real UV value must be divided by 100 from the reg value , datasheet for more information.
   Serial.print("UV: ");  Serial.println((float)SI1145.ReadUV()/100);
   delay(1000);
 }
