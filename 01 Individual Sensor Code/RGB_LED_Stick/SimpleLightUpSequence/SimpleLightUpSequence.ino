@@ -1,13 +1,13 @@
 // NeoPixel Ring simple sketch (c) 2013 Shae Erisson
 // released under the GPLv3 license to match the rest of the AdaFruit NeoPixel library
+// More info from http://wiki.seeedstudio.com/Grove-RGB_LED_Stick-10-WS2813_Mini/
 
 #include "Adafruit_NeoPixel.h"
 #ifdef __AVR__
   #include <avr/power.h>
 #endif
 
-// Which pin on the Arduino is connected to the NeoPixels?
-// On a Trinket or Gemma we suggest changing this to 1
+//Connect the LED stick to digital pin 6
 #define PIN            6
 
 // How many NeoPixels are attached to the Arduino?
@@ -36,12 +36,15 @@ void loop() {
 
   for(int i=0;i<NUMPIXELS;i++){
 
-    // pixels.Color takes RGB values, from 0,0,0 up to 255,255,255
+    //pixels.Color takes RGB values, from 0,0,0 up to 255,255,255
+    //change the values in pixels.Color(0,150,0) below to alter the colour and brightness.
+    //255 here means brightest whilst 0 means off.
     pixels.setPixelColor(i, pixels.Color(0,150,0)); // Moderately bright green color.
 
     pixels.show(); // This sends the updated pixel color to the hardware.
 
     delay(delayval); // Delay for a period of time (in milliseconds).
 
+  //You can hit the reset button to see the lights start lighting up in sequence again.
   }
 }
