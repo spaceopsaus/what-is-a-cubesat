@@ -1,5 +1,7 @@
-// Example testing sketch for various DHT humidity/temperature sensors
-// Written by ladyada, public domain
+// Mashup of DHT humidity/temperature sensors and buzzer
+// Based of ladyada, public domain
+// The following code combines the temperature sensor readings to then turn the buzzer on and off
+// When the buzzer turns on and off will depend on the temperature of the environment.
 
 #include "DHT.h"
 
