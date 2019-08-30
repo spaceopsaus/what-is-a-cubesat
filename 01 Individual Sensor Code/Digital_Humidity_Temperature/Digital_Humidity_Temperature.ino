@@ -4,14 +4,15 @@
 
 #include "DHT.h"
 
-#define DHTPIN 2     // what pin we're connected to
+#define DHTPIN 2     //This is a digital input, this means the pin is Digital. 
+                    //We have selected pin 2 or D2 as seen on the Lotus to connect the 4 pin jumper wire.
 #define DHTTYPE DHT11
 
 DHT dht(DHTPIN, DHTTYPE);
 
 void setup() 
 {
-
+    
     Serial.begin(9600); 
     Serial.println("DHTxx test!");
 
