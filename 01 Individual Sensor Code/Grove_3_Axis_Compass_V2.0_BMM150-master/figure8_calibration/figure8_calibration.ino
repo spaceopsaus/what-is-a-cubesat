@@ -1,7 +1,7 @@
 // The aim of this code is to calibrate the compass base on local magnetism. 
 //It is suggested that the compass should be placed as far away from unwanted interference as possible
 // which includes all electronics and wires. During the calibration process, 
-//the user should draw an infinity symbol with the compass sensor as shown in figure 8 under example folder.
+//the user should draw an infinity symbol with the compass sensor as shown in figure 8 under img folder.
 #include <Arduino.h>
 #include <Wire.h>
 //import sensor calibration libraries
@@ -52,8 +52,13 @@ void calibrate(uint32_t timeout)
   value_z_max = bmm.raw_mag_data.raw_dataz;
   delay(100);
 
-  timeStart = millis();
-  
+  timeStart = millis();//count milliseconds from the moment it starts
+
+  //This while loop perform calibration on the sensor to retreive raw data.
+  //It starts the timer function(Arduiono built-in) 
+  //and continueously updates the max and min xyz orientations in degrees.
+  //At the end of the loop, the value of offset data from each direction
+  //will be calculated from the raw data.
   while((millis() - timeStart) < timeout)
   {
     bmm.read_mag_data();
@@ -113,6 +118,8 @@ void calibrate(uint32_t timeout)
   value_offset.z = value_z_min + (value_z_max - value_z_min)/2;
 }
 
+//In the loop below, the calibrated heading data will be calculated
+//by substracting the offset value.
 void loop()
 {
   bmm150_mag_data value;
@@ -134,8 +141,15 @@ void loop()
   float xyHeadingDegrees = xyHeading * 180 / M_PI;
   float zxHeadingDegrees = zxHeading * 180 / M_PI;
 
+//Please comment and uncomment the following lines out to print the heading value you want
   Serial.print("Heading: ");
+  //The heading is base on the negative z-axis 
+  //and it should conrespond to N of a real compass
   Serial.println(headingDegrees);
+  //Serial.print("xyHeading: ");
+  //Serial.println(xyHeadingDegrees);
+  //Serial.print("zxHeading: ");
+  //Serial.println(zxHeadingDegrees);
   
   delay(100);
 }
