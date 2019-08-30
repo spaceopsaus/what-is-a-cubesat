@@ -1,10 +1,14 @@
 //Please see LED_Temperature _sensor_brightness for detail explanation
+//by Space Ops Australia - Nora Deng
+//This mash up combines the NeoPixel RGB light bar with the temperature sensor.
+//As the temperature increases, the amount of lights will increase.
+
 #include "Adafruit_NeoPixel.h"
 #include "DHT.h"
 
-#define DHTPIN 2 //Temperature sensor pin nunber
+#define DHTPIN 2 //Temperature sensor connect to D2.
 #define DHTTYPE DHT11
-#define PIN            6 // LED pin number
+#define PIN            6 // NeoPixel RGB LED connect to D6.
 #define NUMPIXELS      10
 #define NUM_LEDS 10
 
@@ -46,33 +50,39 @@ void loop() {
     Serial.print("Temperature: "); 
     Serial.print(t);
     Serial.println(" *C");
-
+    
+    //if the temperature is above 45, change all leds to red.
     if(t > 45){
       blueLedVal = 0;
       greenLedVal = 0;
       redLedVal = 255;
           
       for(int i = 0; i<10; i++){
-  // For a set of NeoPixels the first NeoPixel is 0, second is 1, all the way up to the count of pixels minus one.
+        // For a set of NeoPixels the first NeoPixel is 0, 
+        // second is 1, all the way up to the count of pixels minus one.
         pixels.setPixelColor(i, pixels.Color(redLedVal,greenLedVal,blueLedVal)); 
       } 
-        }
+    }
+    //if the temperature is below 5, show up all blue leds.
     else if(t < 5){//t<5 blue
       blueLedVal = 255;
       greenLedVal = 0;
       redLedVal = 0;
           
-        for(int i = 0; i<10; i++){
-          pixels.setPixelColor(i, pixels.Color(redLedVal,greenLedVal,blueLedVal)); 
-        }
+      for(int i = 0; i<10; i++){
+        pixels.setPixelColor(i, pixels.Color(redLedVal,greenLedVal,blueLedVal)); 
+      }
     }
     else{
+      //when the temperatures are between the extremes of 5 and 45 degree
+      //calcluate for a quantity of lights to light up.
       light = round((t-5)/4);//An LED lid up with every 4 deg celsius increase
       for(int i = 0; i<light ; i++){
         pixels.setPixelColor(i, pixels.Color(0,150,0)); 
       }
     }
   }
+  
   pixels.show(); // This sends the updated pixel color to the hardware.
   delay(100);
   for(int i = 0; i<NUMPIXELS ; i++){
