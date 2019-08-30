@@ -5,11 +5,12 @@
 
 #include "DHT.h"
 
-#define DHTPIN 2     // what pin we're connected to
+#define DHTPIN 2         //Connect the temp sensor to digital pin 2
 #define DHTTYPE DHT11
 DHT dht(DHTPIN, DHTTYPE);
+
 int buzzerPin = 6;      // Buzzer connected to digital pin 6
-unsigned char val = 5;         // variable to store the read value
+unsigned char val = 5;  // variable to store the read value
 
 
 void setup() 
@@ -40,14 +41,17 @@ void loop()
     } 
     else 
     {
+      //if the temperature is greater than set value, buzz at define val.
+      //else, set buzz to zero. This almost means, make no sound!
       if (t>28)
       {
         analogWrite(buzzerPin, val);
-        }
+      }
       else
       {
         analogWrite(buzzerPin, 0);
-        }
+      }
+      //Using serial monitor will display values as well.
         Serial.print("Humidity: "); 
         Serial.print(h);
         Serial.print(" %\t");
