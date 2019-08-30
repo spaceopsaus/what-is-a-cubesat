@@ -1,6 +1,6 @@
 //In this little experiment, the RGB LED gradually changes its colour from blueish purple to red
-//base on the reading of the gx value of the gyro(row).
-//The buzzer will be activated as the row surpass the threshold.
+//base on the reading of the gx value of the gyro(roll).
+//The buzzer will be activated as the roll surpass the threshold.
 
 //Reference(Packages can be downloaded from links below)
 //Buzzer: http://wiki.seeedstudio.com/Grove-Buzzer/
@@ -54,7 +54,7 @@ void loop(void)
     bmi088.getAcceleration(&ax, &ay, &az);
     bmi088.getGyroscope(&gx, &gy, &gz);
     temp = bmi088.getTemperature();
-    //row angular velocity more than 511: buzzer on LED red at all time
+    //roll angular velocity more than 511: buzzer on LED red at all time
     if(abs(gx)>511){
         //brightest red
         red = 255;
@@ -63,7 +63,7 @@ void loop(void)
         //Buzzer on
         digitalWrite(5, HIGH);
     }
-    //Otherwise LED colour changes gradually base on the row(in deg/sec)
+    //Otherwise LED colour changes gradually base on the roll(in deg/sec)
     //colour range can be obtained from colour picker websites such as
     //https://www.w3schools.com/colors/colors_picker.asp?color=%23ffab00
     else {
